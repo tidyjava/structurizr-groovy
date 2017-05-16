@@ -57,6 +57,12 @@ class HelloGroovy {
                     key "Containerish key"
                     description "Containerish description"
                 }
+                styles {
+                    component {
+                        background "#1168bd"
+                        color "#ffffff"
+                    }
+                }
             }
         }
 

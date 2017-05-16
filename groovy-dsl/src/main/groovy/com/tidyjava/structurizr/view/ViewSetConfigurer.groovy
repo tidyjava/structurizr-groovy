@@ -7,10 +7,12 @@ import static groovy.lang.Closure.DELEGATE_FIRST
 class ViewSetConfigurer {
     List<SystemContextViewConfigurer> systemContextViews = []
     List<ComponentViewConfigurer> componentViews = []
+    StylesConfigurer styles = new StylesConfigurer()
 
     void apply(Workspace workspace) {
         systemContextViews.each { it.apply(workspace) }
         componentViews.each { it.apply(workspace) }
+        styles.apply(workspace)
     }
 
     void systemContext(@DelegatesTo(value = SystemContextViewConfigurer, strategy = DELEGATE_FIRST) Closure configurer) {
@@ -27,5 +29,11 @@ class ViewSetConfigurer {
         configurer.resolveStrategy = DELEGATE_FIRST
         configurer()
         componentViews.add(cvc)
+    }
+
+    void styles(@DelegatesTo(value = StylesConfigurer, strategy = DELEGATE_FIRST) Closure configurer) {
+        configurer.delegate = styles
+        configurer.resolveStrategy = DELEGATE_FIRST
+        configurer()
     }
 }
