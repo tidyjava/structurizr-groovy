@@ -27,12 +27,35 @@ class HelloGroovy {
                         }
                     }
                 }
+                softwareSystem {
+                    name "Mail Server"
+                    description "Allows sending emails"
+                }
+                softwareSystem {
+                    name "Spammer"
+                    description "Spams around"
+                    container {
+                        name "Some container"
+                        description "Ugh"
+                        technology "Oh my!"
+                        componentFinder {
+                            packageToScan "com.tidyjava.examples"
+                            strategy structurizrAnnotations()
+                        }
+                    }
+                }
             }
             views {
                 systemContext {
                     softwareSystem "DSLish Software System"
                     key "DSLish key"
                     description "DSLish description"
+                }
+                component {
+                    softwareSystem "Spammer"
+                    container "Some container"
+                    key "Containerish key"
+                    description "Containerish description"
                 }
             }
         }

@@ -5,10 +5,12 @@ import com.structurizr.Workspace
 import static groovy.lang.Closure.DELEGATE_FIRST
 
 class ViewSetConfigurer {
-    List<SystemContextViewConfigurer> views = []
+    List<SystemContextViewConfigurer> systemContextViews = []
+    List<ComponentViewConfigurer> componentViews = []
 
     void apply(Workspace workspace) {
-        views.each { it.apply(workspace) }
+        systemContextViews.each { it.apply(workspace) }
+        componentViews.each { it.apply(workspace) }
     }
 
     void systemContext(@DelegatesTo(value = SystemContextViewConfigurer, strategy = DELEGATE_FIRST) Closure configurer) {
@@ -16,6 +18,14 @@ class ViewSetConfigurer {
         configurer.delegate = scvc
         configurer.resolveStrategy = DELEGATE_FIRST
         configurer()
-        views.add(scvc)
+        systemContextViews.add(scvc)
+    }
+
+    void component(@DelegatesTo(value = ComponentViewConfigurer, strategy = DELEGATE_FIRST) Closure configurer) {
+        def cvc = new ComponentViewConfigurer()
+        configurer.delegate = cvc
+        configurer.resolveStrategy = DELEGATE_FIRST
+        configurer()
+        componentViews.add(cvc)
     }
 }
