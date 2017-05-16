@@ -1,18 +1,17 @@
-package com.tidyjava.structurizr.model.element
+package com.tidyjava.structurizr.model
 
 import com.structurizr.Workspace
 import com.structurizr.model.Element
-import com.tidyjava.structurizr.model.element.relationship.UsageConfigurer
 
 import static groovy.lang.Closure.DELEGATE_FIRST
 
 class ElementConfigurer {
     String name
     String description
-    UsageConfigurer usages = new UsageConfigurer()
+    List<UsageConfigurer> usages = []
 
     void apply(Element element, Workspace workspace) {
-        usages.apply(element, workspace)
+        usages.forEach { it.apply(element, workspace) }
     }
 
     void name(String name) {
@@ -24,8 +23,10 @@ class ElementConfigurer {
     }
 
     void uses(@DelegatesTo(value = UsageConfigurer, strategy = DELEGATE_FIRST) Closure configurer) {
-        configurer.delegate = usages
+        def uc = new UsageConfigurer()
+        configurer.delegate = uc
         configurer.resolveStrategy = DELEGATE_FIRST
         configurer()
+        usages.add(uc)
     }
 }

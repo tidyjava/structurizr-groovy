@@ -1,4 +1,4 @@
-package com.tidyjava.structurizr.model.element
+package com.tidyjava.structurizr.model
 
 import com.structurizr.Workspace
 import com.structurizr.model.SoftwareSystem
@@ -16,7 +16,7 @@ class ContainerConfigurer extends ElementConfigurer {
             componentFinder.apply(container)
         }
 
-        super.apply(container, workspace)
+        apply(container, workspace)
     }
 
     void technology(String technology) {

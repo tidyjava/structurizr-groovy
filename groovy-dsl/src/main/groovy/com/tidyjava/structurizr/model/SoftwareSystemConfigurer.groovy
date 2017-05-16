@@ -1,4 +1,4 @@
-package com.tidyjava.structurizr.model.element
+package com.tidyjava.structurizr.model
 
 import com.structurizr.Workspace
 

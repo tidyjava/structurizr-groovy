@@ -13,29 +13,24 @@ class HelloWorld {
             name "My First Workspace"
             description "I'm using this to learn about Structurizr"
 
-            model {
-                softwareSystem {
-                    name "World"
-                    description "Earth, to be precise."
-                }
-                person {
-                    name "Me"
-                    description "Myself."
-                    uses {
-                        softwareSystem {
-                            name "World"
-                            description "Hello, World!"
-                        }
-                    }
+            softwareSystem {
+                name "World"
+                description "Earth, to be precise."
+            }
+
+            person {
+                name "Me"
+                description "Myself."
+                uses {
+                    softwareSystem "World"
+                    description "Hello, World!"
                 }
             }
 
-            views {
-                systemContext {
-                    softwareSystem "World"
-                    key "My First View"
-                    description "Just me and the world."
-                }
+            systemContextView {
+                softwareSystem "World"
+                key "My First View"
+                description "Just me and the world."
             }
         }
 

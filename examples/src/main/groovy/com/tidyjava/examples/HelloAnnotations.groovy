@@ -12,37 +12,36 @@ class HelloAnnotations {
         def ws = new Workspace("My First Workspace", "I'm using this to learn about Structurizr")
 
         ws.configure {
-            model {
-                softwareSystem {
-                    name "Mail Server"
-                    description "Allows sending emails"
-                }
-                softwareSystem {
-                    name "Spammer"
-                    description "Spams around"
-                    container {
-                        name "Some container"
-                        description "Ugh"
-                        technology "Oh my!"
-                        componentFinder {
-                            packageToScan "com.tidyjava.examples"
-                            strategy structurizrAnnotations()
-                        }
+            softwareSystem {
+                name "Mail Server"
+                description "Allows sending emails"
+            }
+
+            softwareSystem {
+                name "Spammer"
+                description "Spams around"
+                container {
+                    name "Some container"
+                    description "Ugh"
+                    technology "Oh my!"
+                    componentFinder {
+                        packageToScan "com.tidyjava.examples"
+                        strategy structurizrAnnotations()
                     }
                 }
             }
-            views {
+
+            componentView {
+                softwareSystem "Spammer"
+                container "Some container"
+                key "Containerish key"
+                description "Containerish description"
+            }
+
+            styles {
                 component {
-                    softwareSystem "Spammer"
-                    container "Some container"
-                    key "Containerish key"
-                    description "Containerish description"
-                }
-                styles {
-                    component {
-                        background "#1168bd"
-                        color "#ffffff"
-                    }
+                    background "#1168bd"
+                    color "#ffffff"
                 }
             }
         }
