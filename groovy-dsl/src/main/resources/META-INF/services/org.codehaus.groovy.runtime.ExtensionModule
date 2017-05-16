@@ -1,0 +1,3 @@
+moduleName=structurizr-module
+moduleVersion=1.0-SNAPSHOT
+extensionClasses=com.tidyjava.structurizr.WorkspaceConfigurerExtension

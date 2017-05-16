@@ -14,9 +14,19 @@ class WorkspaceConfigurer {
 
     Workspace apply() {
         def workspace = new Workspace(name, description)
+        applyConfigurers(workspace)
+        return workspace
+    }
+
+    void apply(Workspace workspace) {
+        if (name) workspace.name = name
+        if (description) workspace.description = description
+        applyConfigurers(workspace)
+    }
+
+    void applyConfigurers(Workspace workspace) {
         modelConfigurer.apply(workspace)
         viewSetConfigurer.apply(workspace)
-        return workspace
     }
 
     void name(String name) {

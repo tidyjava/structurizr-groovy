@@ -27,6 +27,18 @@ class HelloGroovy {
                         }
                     }
                 }
+            }
+            views {
+                systemContext {
+                    softwareSystem "DSLish Software System"
+                    key "DSLish key"
+                    description "DSLish description"
+                }
+            }
+        }
+
+        ws.configure {
+            model {
                 softwareSystem {
                     name "Mail Server"
                     description "Allows sending emails"
@@ -46,11 +58,6 @@ class HelloGroovy {
                 }
             }
             views {
-                systemContext {
-                    softwareSystem "DSLish Software System"
-                    key "DSLish key"
-                    description "DSLish description"
-                }
                 component {
                     softwareSystem "Spammer"
                     container "Some container"
